@@ -1,23 +1,65 @@
-import logo from './logo.svg';
 import './App.css';
+import 'semantic-ui-css/semantic.min.css'
+import React from 'react'
+import { Button, Table } from 'semantic-ui-react'
+import { makeDate, openModal} from './state'
+import ModalExampleModal from './modal'
 
-function App() {
+function App(props) {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Table celled>
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell>Имя</Table.Cell>
+            {props.users.map((u) => {
+              return (
+                <Table.Cell>{u.name}</Table.Cell>
+              )
+            })}
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>Фамилия</Table.Cell>
+            {props.users.map((u) => {
+              return (
+                <Table.Cell>{u.lastName}</Table.Cell>
+              )
+            })}
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>Дата Рождения</Table.Cell>
+            {props.users.map((u) => {
+              return (
+                <Table.Cell>{makeDate(u.DateOfBirth)}</Table.Cell>
+              )
+            })}
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>Локация</Table.Cell>
+            {props.users.map((u) => {
+              return (
+                <Table.Cell>{u.location.city} from</Table.Cell>
+              )
+            })}
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>
+              <Button.Group basic size='small'>
+                <Button icon='file' />
+              </Button.Group>
+            </Table.Cell>
+            {props.users.map((u) => {
+              return (
+                <Table.Cell>
+                  <Button.Group basic size='small'>
+                  <button class="ui button" onClick={ModalExampleModal}>Show Modal</button>
+                  </Button.Group>
+                </Table.Cell>
+              )
+            })}
+          </Table.Row>
+        </Table.Body>
+      </Table>
     </div>
   );
 }
