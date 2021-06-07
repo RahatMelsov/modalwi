@@ -52,7 +52,7 @@ function App(props) {
               return (
                 <Table.Cell>
                   <Button.Group basic size='small'>
-                  <button class="ui button" onClick={ModalExampleModal}>Show Modal</button>
+                  <button class="ui button" >Show Modal</button>
                   </Button.Group>
                 </Table.Cell>
               )
